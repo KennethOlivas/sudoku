@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { generateGame, BLANK } from '../utils';
 import type { Game, CellPosition, ValidationResult, DeletingCell } from '../types';
+import { useStore } from '../store/store';
 
 export interface GameState {
     game: Game;
@@ -29,8 +30,17 @@ export const useGameState = (): GameState & GameActions => {
     const [showErrors, setShowErrors] = useState<boolean>(false);
     const [deletingCell, setDeletingCell] = useState<DeletingCell>(null);
 
+    const difficulty = useStore((state) => state.difficulty);
+
     const startNewGame = useCallback(() => {
-        const newGame = generateGame(40);
+        let holes = 40;
+        switch (difficulty) {
+            case 'easy': holes = 30; break;
+            case 'normal': holes = 40; break;
+            case 'expert': holes = 55; break;
+        }
+
+        const newGame = generateGame(holes);
         setGame(newGame);
         setBoard(newGame.initial.map(row => [...row]));
         setWon(false);
@@ -38,7 +48,7 @@ export const useGameState = (): GameState & GameActions => {
         setShowErrors(false);
         setValidationResult(null);
         setDeletingCell(null);
-    }, []);
+    }, [difficulty]);
 
     const handleCellClick = useCallback((r: number, c: number) => {
         if (game.initial[r][c] !== BLANK) return;

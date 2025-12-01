@@ -1,13 +1,14 @@
-import { ScanSearch, RefreshCw } from 'lucide-react';
+import { ScanSearch, RefreshCw, ArrowLeft } from 'lucide-react';
 import type { ValidationResult } from '../types';
 
 interface SidePanelProps {
     validationResult: ValidationResult;
     onValidate: () => void;
     onReset: () => void;
+    onBack: () => void;
 }
 
-export const SidePanel = ({ validationResult, onValidate, onReset }: SidePanelProps) => {
+export const SidePanel = ({ validationResult, onValidate, onReset, onBack }: SidePanelProps) => {
     const getStatusText = () => {
         if (validationResult === 'errors') return 'ERROR!';
         if (validationResult === 'incomplete') return 'CLEAN';
@@ -23,9 +24,19 @@ export const SidePanel = ({ validationResult, onValidate, onReset }: SidePanelPr
     return (
         <div className="flex flex-col gap-6 w-full lg:w-64 shrink-0">
             <div className="control-panel p-4 rounded-lg shadow-2xl">
-                <h1 className="text-xl text-center leading-relaxed drop-shadow-lg text-retro-warm mb-6">
-                    PIXEL<br />SUDOKU
-                </h1>
+                <div className="flex items-center justify-between mb-6">
+                    <button
+                        onClick={onBack}
+                        className="p-2 hover:bg-[var(--color-primary)] hover:text-[var(--bg-main)] rounded transition-colors text-[var(--text-secondary)]"
+                        title="Back to Menu"
+                    >
+                        <ArrowLeft size={20} />
+                    </button>
+                    <h1 className="text-xl text-center leading-relaxed drop-shadow-lg text-retro-warm flex-1">
+                        PIXEL<br />SUDOKU
+                    </h1>
+                    <div className="w-9" /> {/* Spacer for centering */}
+                </div>
 
                 <div className="space-y-4 text-[10px] mb-8">
                     <div className="flex justify-between p-2 bg-gray-900/60 shadow-inner text-gray-400 border-2 border-amber-900/30 rounded">

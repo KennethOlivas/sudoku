@@ -1,7 +1,39 @@
+import { useStore } from '../store/store';
+import { themes } from '../styles/themes';
+
 export const GlobalStyles = () => {
+  const themeName = useStore((state) => state.theme);
+  const theme = themes[themeName];
+
+  const themeVariables = `
+    :root {
+      --bg-main: ${theme.background};
+      --bg-surface: ${theme.surface};
+      --color-primary: ${theme.primary};
+      --color-secondary: ${theme.secondary};
+      --color-accent: ${theme.accent};
+      --text-main: ${theme.text};
+      --text-secondary: ${theme.textSecondary};
+      --border-color: ${theme.border};
+      --color-success: ${theme.success};
+      --color-error: ${theme.error};
+      --color-warning: ${theme.warning};
+      --font-main: ${theme.font};
+    }
+  `;
+
   return (
     <style>{`
-      @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+      ${themeVariables}
+
+      body {
+        background: var(--bg-main);
+        color: var(--text-main);
+        font-family: var(--font-main);
+        transition: background 0.3s ease, color 0.3s ease;
+      }
+
+      @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&family=Inter:wght@400;700&family=Quicksand:wght@400;700&display=swap');
       
       /* Particle/Star field animation */
       @keyframes float {
@@ -18,75 +50,78 @@ export const GlobalStyles = () => {
         position: absolute;
         width: 2px;
         height: 2px;
-        background: #F5E6D3;
+        background: var(--text-secondary);
         border-radius: 50%;
         animation: twinkle 3s ease-in-out infinite;
       }
 
-      /* Atmospheric gradient background */
+      /* Atmospheric gradient background - optional based on theme */
       .gradient-bg {
-        background: linear-gradient(135deg, #E8D5B7 0%, #8B7355 40%, #5D6D7E 70%, #2C3E50 100%);
+        background: var(--bg-main);
       }
       
-      /* Warm texture overlay */
+      /* Warm texture overlay - mostly for retro themes */
       .texture-overlay {
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+        /* background-image: url("..."); */
+        opacity: 0.03;
+        pointer-events: none;
       }
 
-      /* Warm vignette */
+      /* Vignette */
       .vignette {
-        background: radial-gradient(circle at center, transparent 20%, rgba(44, 62, 80, 0.4) 100%);
+        background: radial-gradient(circle at center, transparent 20%, rgba(0, 0, 0, 0.4) 100%);
+        pointer-events: none;
       }
 
       /* Warm ambient glow */
       .warm-glow {
         background: radial-gradient(
           circle 800px at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-          rgba(230, 126, 34, 0.15) 0%,
+          var(--color-primary),
           transparent 60%
         );
+        opacity: 0.15;
+        pointer-events: none;
       }
 
       /* Retro pixel text */
       .text-retro-warm {
-          color: #E67E22;
+          color: var(--color-accent);
           text-shadow: 
-              2px 2px 0px #8B4513,
-              0 0 10px rgba(230, 126, 34, 0.5);
+              2px 2px 0px var(--color-secondary),
+              0 0 10px var(--color-accent);
       }
 
       /* Control panel styling */
       .control-panel {
-          background: linear-gradient(135deg, #34495E 0%, #2C3E50 100%);
-          border: 3px solid #8B7355;
+          background: var(--bg-surface);
+          border: 3px solid var(--border-color);
           box-shadow: 
             0 8px 16px rgba(0, 0, 0, 0.4),
-            inset 0 1px 0 rgba(245, 230, 211, 0.1);
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
       }
       
-      /* Cell hole - warm version */
+      /* Cell hole */
       .cell-hole {
-        background: #2C3E50;
+        background: var(--bg-surface);
         box-shadow: 
           inset 3px 3px 6px rgba(0, 0, 0, 0.6),
-          inset -1px -1px 3px rgba(245, 230, 211, 0.05);
-        border: 2px solid #1a252f;
+          inset -1px -1px 3px rgba(255, 255, 255, 0.05);
+        border: 2px solid var(--border-color);
       }
 
-      /* Physical tile base - enhanced depth */
+      /* Physical tile base */
       .tile-physical {
+        background: var(--bg-surface);
+        color: var(--text-main);
         box-shadow: 
-          /* Inner highlight */
           inset 1px 1px 0px rgba(255, 255, 255, 0.2),
-          /* Inner shadow */
           inset -1px -1px 0px rgba(0, 0, 0, 0.3),
-          /* Main shadow */
           3px 3px 0px rgba(0, 0, 0, 0.3),
-          /* Ambient occlusion */
           0 4px 8px rgba(0, 0, 0, 0.4);
         transform: translateY(-2px);
-        transition: transform 0.1s, box-shadow 0.1s;
-        border: 2px solid rgba(0, 0, 0, 0.3);
+        transition: transform 0.1s, box-shadow 0.1s, background 0.3s, color 0.3s;
+        border: 2px solid var(--border-color);
       }
 
       .tile-physical:active {
@@ -101,80 +136,39 @@ export const GlobalStyles = () => {
       .text-3d {
         text-shadow: 
           1px 1px 0px rgba(0, 0, 0, 0.3),
-          2px 2px 0px rgba(0, 0, 0, 0.25),
-          3px 3px 0px rgba(0, 0, 0, 0.2),
-          4px 4px 0px rgba(0, 0, 0, 0.15),
-          5px 5px 8px rgba(0, 0, 0, 0.4);
+          2px 2px 0px rgba(0, 0, 0, 0.25);
       }
 
-      /* Number-specific tile colors */
-      .tile-num-1 {
-        background: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%);
-        color: #F5E6D3;
-      }
+      /* Number-specific tile colors - simplified for theming */
+      .tile-num-1 { color: var(--color-primary); }
+      .tile-num-2 { color: var(--color-secondary); }
+      .tile-num-3 { color: var(--color-accent); }
+      .tile-num-4 { color: var(--color-success); }
+      .tile-num-5 { color: var(--color-warning); }
+      .tile-num-6 { color: var(--color-error); }
+      .tile-num-7 { color: var(--text-main); }
+      .tile-num-8 { color: var(--text-secondary); }
+      .tile-num-9 { color: var(--color-primary); }
       
-      .tile-num-2 {
-        background: linear-gradient(135deg, #1ABC9C 0%, #16A085 100%);
-        color: #F5E6D3;
-      }
-      
-      .tile-num-3 {
-        background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);
-        color: #F5E6D3;
-      }
-      
-      .tile-num-4 {
-        background: linear-gradient(135deg, #F39C12 0%, #E67E22 100%);
-        color: #F5E6D3;
-      }
-      
-      .tile-num-5 {
-        background: linear-gradient(135deg, #D35400 0%, #A04000 100%);
-        color: #F5E6D3;
-      }
-      
-      .tile-num-6 {
-        background: linear-gradient(135deg, #16A085 0%, #138D75 100%);
-        color: #F5E6D3;
-      }
-      
-      .tile-num-7 {
-        background: linear-gradient(135deg, #A0522D 0%, #8B4513 100%);
-        color: #F5E6D3;
-      }
-      
-      .tile-num-8 {
-        background: linear-gradient(135deg, #5D6D7E 0%, #34495E 100%);
-        color: #F5E6D3;
-      }
-      
-      .tile-num-9 {
-        background: linear-gradient(135deg, #34495E 0%, #2C3E50 100%);
-        color: #E67E22;
-      }
-      
-      /* Empty cell - warm beige */
+      /* Empty cell */
       .tile-empty {
-        background: linear-gradient(135deg, #F5E6D3 0%, #E8D5B7 100%);
-        color: #2C3E50;
+        background: var(--bg-surface);
+        color: var(--text-main);
       }
       
-      /* Initial/locked tiles - slightly darker */
+      /* Initial/locked tiles */
       .tile-initial {
         opacity: 0.9;
         font-weight: bold;
+        background: var(--bg-surface);
+        filter: brightness(0.9);
       }
       
-      /* Error tile - red with warm glow */
+      /* Error tile */
       .tile-error {
-         background: linear-gradient(135deg, #C0392B 0%, #922B21 100%) !important;
-         color: #F5E6D3 !important;
-         border-color: #922B21 !important;
-         box-shadow: 
-          inset 1px 1px 0px rgba(255, 255, 255, 0.2),
-          inset -1px -1px 0px rgba(0, 0, 0, 0.4),
-          3px 3px 0px rgba(0, 0, 0, 0.3),
-          0 0 12px rgba(192, 57, 43, 0.6) !important;
+         background: var(--color-error) !important;
+         color: var(--bg-main) !important;
+         border-color: var(--color-error) !important;
          animation: pulse-error 0.5s ease-in-out;
       }
       
@@ -183,77 +177,83 @@ export const GlobalStyles = () => {
         50% { transform: scale(1.05) translateY(-3px); }
       }
       
-      /* Button styling - warm theme */
+      /* Button styling */
       .btn-warm {
-          background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);
-          color: #F5E6D3;
-          border: 2px solid #A04000;
+          background: var(--color-primary);
+          color: var(--bg-main);
+          border: 2px solid var(--border-color);
           box-shadow: 
-              0 3px 0px #8B4513,
+              0 3px 0px var(--border-color),
               0 4px 8px rgba(0, 0, 0, 0.3);
-          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
       }
       
       .btn-warm:hover {
-          background: linear-gradient(135deg, #F39C12 0%, #E67E22 100%);
+          filter: brightness(1.1);
           transform: translateY(-1px);
           box-shadow: 
-              0 4px 0px #8B4513,
+              0 4px 0px var(--border-color),
               0 6px 12px rgba(0, 0, 0, 0.4);
       }
       
       .btn-warm:active {
           transform: translateY(2px);
           box-shadow: 
-              0 1px 0px #8B4513,
+              0 1px 0px var(--border-color),
               0 2px 4px rgba(0, 0, 0, 0.3);
       }
       
       .btn-teal {
-          background: linear-gradient(135deg, #16A085 0%, #138D75 100%);
-          color: #F5E6D3;
-          border: 2px solid #0E6655;
+          background: var(--color-secondary);
+          color: var(--bg-main);
+          border: 2px solid var(--border-color);
           box-shadow: 
-              0 3px 0px #0B5345,
+              0 3px 0px var(--border-color),
               0 4px 8px rgba(0, 0, 0, 0.3);
       }
       
       .btn-teal:hover {
-          background: linear-gradient(135deg, #1ABC9C 0%, #16A085 100%);
+          filter: brightness(1.1);
           transform: translateY(-1px);
           box-shadow: 
-              0 4px 0px #0B5345,
+              0 4px 0px var(--border-color),
               0 6px 12px rgba(0, 0, 0, 0.4);
       }
       
       .btn-teal:active {
           transform: translateY(2px);
           box-shadow: 
-              0 1px 0px #0B5345,
+              0 1px 0px var(--border-color),
               0 2px 4px rgba(0, 0, 0, 0.3);
       }
       
       .btn-navy {
-          background: linear-gradient(135deg, #34495E 0%, #2C3E50 100%);
-          color: #E67E22;
-          border: 2px solid #1C2833;
+          background: var(--bg-surface);
+          color: var(--text-main);
+          border: 2px solid var(--border-color);
           box-shadow: 
-              0 3px 0px #1A252F,
+              0 3px 0px var(--border-color),
               0 4px 8px rgba(0, 0, 0, 0.3);
       }
       
       .btn-navy:hover {
-          background: linear-gradient(135deg, #5D6D7E 0%, #34495E 100%);
+          filter: brightness(1.1);
       }
 
       /* Number pad buttons */
       .numpad-button {
           transition: all 0.15s ease;
           font-weight: bold;
-          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+          background: var(--bg-surface);
+          color: var(--text-main);
+          border: 1px solid var(--border-color);
+      }
+      
+      .numpad-button:hover {
+        background: var(--color-primary);
+        color: var(--bg-main);
       }
 
-      /* Pop-in animation - softer */
+      /* Pop-in animation */
       @keyframes popIn {
         0% { transform: scale(0.5) translateY(10px); opacity: 0; }
         60% { transform: scale(1.08) translateY(-3px); }
@@ -263,7 +263,7 @@ export const GlobalStyles = () => {
         animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
       }
       
-      /* Destruction animation with particle explosion */
+      /* Destruction animation */
       @keyframes destroy {
         0% { 
           transform: scale(1) translateY(-2px); 
@@ -289,23 +289,7 @@ export const GlobalStyles = () => {
         animation: destroy 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
       }
       
-      /* Particle explosion effect */
-      @keyframes particle-explode {
-        0% {
-          transform: translate(0, 0) scale(1);
-          opacity: 1;
-        }
-        100% {
-          transform: translate(var(--tx), var(--ty)) scale(0);
-          opacity: 0;
-        }
-      }
-      
-      .particle-explode {
-        animation: particle-explode 0.5s ease-out forwards;
-      }
-
-      /* Shake animation - for errors */
+      /* Shake animation */
       @keyframes shake {
         0%, 100% { transform: translateX(0); }
         25% { transform: translateX(-8px); }
@@ -315,12 +299,13 @@ export const GlobalStyles = () => {
         animation: shake 0.4s ease-in-out;
       }
       
-      /* Selection highlight - warm glow */
+      /* Selection highlight */
       .cell-selected {
         box-shadow: 
-          0 0 0 3px rgba(230, 126, 34, 0.5),
-          inset 0 0 20px rgba(230, 126, 34, 0.2);
+          0 0 0 3px var(--color-accent),
+          inset 0 0 20px var(--color-accent);
       }
     `}</style>
   );
 };
+
