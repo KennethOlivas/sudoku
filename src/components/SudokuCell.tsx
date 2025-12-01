@@ -80,7 +80,7 @@ export const SudokuCell = ({
             )}
 
             {/* Hover effect - subtle warm glow */}
-            <div className="absolute inset-0 bg-gradient-to-br from-orange-400/0 to-orange-400/0 group-hover:from-orange-400/10 group-hover:to-orange-600/10 transition-all pointer-events-none rounded-sm" />
+            <div className="absolute inset-0 bg-linear-to-br from-orange-400/0 to-orange-400/0 group-hover:from-orange-400/10 group-hover:to-orange-600/10 transition-all pointer-events-none rounded-sm" />
 
             {/* Particle explosion effect */}
             {isDeleting && particles.map((particle) => (
@@ -119,7 +119,7 @@ export const SudokuCell = ({
                     {value !== BLANK ? value : ''}
 
                     {/* Subtle highlight for depth */}
-                    <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white/10 to-transparent rounded-t-sm pointer-events-none" />
+                    <div className="absolute top-0 left-0 right-0 h-1/3 bg-linear-to-b from-white/10 to-transparent rounded-t-sm pointer-events-none" />
                 </div>
             ) : null}
         </div>

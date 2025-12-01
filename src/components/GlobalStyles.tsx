@@ -125,7 +125,7 @@ export const GlobalStyles = () => {
       
       .tile-num-4 {
         background: linear-gradient(135deg, #F39C12 0%, #E67E22 100%);
-        color: #2C3E50;
+        color: #F5E6D3;
       }
       
       .tile-num-5 {

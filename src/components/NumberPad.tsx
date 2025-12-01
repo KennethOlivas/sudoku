@@ -12,12 +12,12 @@ const getNumberButtonClass = (num: number): string => {
         1: 'bg-gradient-to-br from-red-500 to-red-700 hover:from-red-400 hover:to-red-600 text-amber-50 border-2 border-red-800',
         2: 'bg-gradient-to-br from-teal-500 to-teal-700 hover:from-teal-400 hover:to-teal-600 text-amber-50 border-2 border-teal-800',
         3: 'bg-gradient-to-br from-orange-500 to-orange-700 hover:from-orange-400 hover:to-orange-600 text-amber-50 border-2 border-orange-800',
-        4: 'bg-gradient-to-br from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-gray-800 border-2 border-amber-700',
+        4: 'bg-gradient-to-br from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-gray-200 border-2 border-amber-700',
         5: 'bg-gradient-to-br from-orange-600 to-orange-800 hover:from-orange-500 hover:to-orange-700 text-amber-50 border-2 border-orange-900',
         6: 'bg-gradient-to-br from-teal-600 to-teal-800 hover:from-teal-500 hover:to-teal-700 text-amber-50 border-2 border-teal-900',
         7: 'bg-gradient-to-br from-amber-700 to-amber-900 hover:from-amber-600 hover:to-amber-800 text-amber-50 border-2 border-amber-950',
         8: 'bg-gradient-to-br from-gray-600 to-gray-800 hover:from-gray-500 hover:to-gray-700 text-amber-50 border-2 border-gray-900',
-        9: 'bg-gradient-to-br from-slate-700 to-slate-900 hover:from-slate-600 hover:to-slate-800 text-orange-400 border-2 border-slate-950',
+        9: 'bg-gradient-to-br from-slate-700 to-slate-900 hover:from-slate-600 hover:to-slate-800 text-orange-500 border-2 border-slate-950',
     };
 
     return `${baseClasses} ${colorMap[num]}`;

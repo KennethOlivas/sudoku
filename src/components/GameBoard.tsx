@@ -20,7 +20,7 @@ export const GameBoard = ({
     onCellClick,
 }: GameBoardProps) => {
     return (
-        <div className="relative p-4 sm:p-6 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg shadow-2xl border-4 border-amber-900/50 max-w-2xl mx-auto">
+        <div className="relative p-4 sm:p-6 bg-linear-to-br from-gray-800 to-gray-900 rounded-lg shadow-2xl border-4 border-amber-900/50 max-w-2xl mx-auto">
             {/* Warm border glow */}
             <div
                 className="absolute inset-0 rounded-lg pointer-events-none"
