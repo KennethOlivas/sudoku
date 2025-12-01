@@ -39,13 +39,13 @@ export const SidePanel = ({ validationResult, onValidate, onReset, onBack }: Sid
                 </div>
 
                 <div className="space-y-4 text-[10px] mb-8">
-                    <div className="flex justify-between p-2 bg-gray-900/60 shadow-inner text-gray-400 border-2 border-amber-900/30 rounded">
+                    <div className="flex justify-between p-2 bg-gray-900/60 shadow-inner text-(--text-primary) border-2 border-amber-900/30 rounded">
                         <span>STATUS</span>
                         <span className={getStatusColor()}>
                             {getStatusText()}
                         </span>
                     </div>
-                    <div className="p-3 bg-gray-900/60 shadow-inner text-gray-500 text-center leading-4 border-2 border-amber-900/20 rounded">
+                    <div className="p-3 bg-gray-900/60 shadow-inner text-(--text-primary) text-center leading-4 border-2 border-amber-900/20 rounded">
                         {validationResult === 'incomplete'
                             ? "Board is correct, but cells are missing."
                             : "Complete the grid."}

@@ -59,7 +59,7 @@ export const themes: Record<Theme, ThemeColors> = {
         font: '"Inter", sans-serif',
     },
     mario: {
-        background: '#5c94fc',
+        background: '#11111',
         surface: '#e69c21', // ground block color
         primary: '#e52521', // mario red
         secondary: '#43b047', // luigi green
