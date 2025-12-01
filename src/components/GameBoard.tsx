@@ -20,14 +20,16 @@ export const GameBoard = ({
     onCellClick,
 }: GameBoardProps) => {
     return (
-        <div className="relative p-6 bg-[#0a002a] rounded-xl shadow-2xl border-4 border-[#002a4a]">
-            {/* Neon frame around the board */}
+        <div className="relative p-4 sm:p-6 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg shadow-2xl border-4 border-amber-900/50 max-w-2xl mx-auto">
+            {/* Warm border glow */}
             <div
-                className="absolute inset-0 border-2 border-[#00ffff] rounded-lg pointer-events-none opacity-50"
-                style={{ boxShadow: '0 0 15px rgba(0, 255, 255, 0.8)' }}
-            ></div>
+                className="absolute inset-0 rounded-lg pointer-events-none"
+                style={{
+                    boxShadow: '0 0 30px rgba(139, 115, 85, 0.3), inset 0 0 20px rgba(0, 0, 0, 0.5)'
+                }}
+            />
 
-            <div className="grid grid-cols-9 bg-[#05001a] p-2 gap-px border-2 border-[#000] shadow-[inset_0_0_20px_rgba(0,0,0,1)]">
+            <div className="grid grid-cols-9 bg-gray-900/80 p-2 gap-px border-4 border-gray-900 rounded shadow-inner max-w-full">
                 {board.map((row, r) => (
                     row.map((cell, c) => {
                         const isInitial = game.initial[r][c] !== BLANK;

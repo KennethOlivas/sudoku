@@ -43,7 +43,7 @@ function App() {
     <div
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative min-h-screen w-full bg-[#05001a] flex items-center justify-center overflow-hidden font-mono select-none"
+      className="relative min-h-screen w-full flex items-center justify-center overflow-hidden font-mono select-none"
       style={{ fontFamily: '"Press Start 2P", monospace' }}
     >
       <GlobalStyles />
