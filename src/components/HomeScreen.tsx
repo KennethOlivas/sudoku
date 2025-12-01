@@ -80,7 +80,7 @@ export const HomeScreen = () => {
                                         <button
                                             key={tName}
                                             onClick={() => setTheme(tName)}
-                                            className={`w-full aspect-square rounded-sm border-2 transition-transform hover:scale-110 ${theme === tName ? 'border-[var(--color-accent)] ring-2 ring-[var(--color-accent)] ring-offset-2 ring-offset-[var(--bg-surface)]' : 'border-[var(--border-color)]'}`}
+                                            className={`w-full aspect-square border-2 transition-transform hover:scale-110 ${theme === tName ? 'border-[var(--color-accent)] ring-2 ring-[var(--color-accent)] ring-offset-2 ring-offset-[var(--bg-surface)]' : 'border-[var(--border-color)]'}`}
                                             style={{ background: getThemeColor(tName) }}
                                             title={t.themes[tName]}
                                         />
@@ -105,7 +105,7 @@ export const HomeScreen = () => {
                                 <span className="capitalize">{t[diff]}</span>
                                 <div className="flex gap-1">
                                     {[...Array(diff === 'easy' ? 1 : diff === 'normal' ? 2 : 3)].map((_, i) => (
-                                        <div key={i} className="w-2 h-2 bg-[var(--color-primary)] rounded-full" />
+                                        <div key={i} className="w-2 h-2 bg-[var(--color-primary)]" />
                                     ))}
                                 </div>
                             </button>

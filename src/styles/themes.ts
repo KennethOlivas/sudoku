@@ -28,7 +28,7 @@ export const themes: Record<Theme, ThemeColors> = {
         success: '#00ff00',
         error: '#ff0000',
         warning: '#ffff00',
-        font: '"Orbitron", sans-serif',
+        font: '"Press Start 2P", cursive',
     },
     brutalist: {
         background: '#ffffff',
@@ -42,7 +42,7 @@ export const themes: Record<Theme, ThemeColors> = {
         success: '#00ff00',
         error: '#ff0000',
         warning: '#ffff00',
-        font: '"Courier New", monospace',
+        font: '"Press Start 2P", cursive',
     },
     minimal: {
         background: '#f9f9f9',
@@ -56,7 +56,7 @@ export const themes: Record<Theme, ThemeColors> = {
         success: '#28a745',
         error: '#dc3545',
         warning: '#ffc107',
-        font: '"Inter", sans-serif',
+        font: '"Press Start 2P", cursive',
     },
     mario: {
         background: '#11111',
@@ -84,6 +84,6 @@ export const themes: Record<Theme, ThemeColors> = {
         success: '#a8ff78',
         error: '#ff6b6b',
         warning: '#f6d365',
-        font: '"Quicksand", sans-serif',
+        font: '"Press Start 2P", cursive',
     },
 };

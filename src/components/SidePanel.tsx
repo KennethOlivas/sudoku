@@ -23,11 +23,11 @@ export const SidePanel = ({ validationResult, onValidate, onReset, onBack }: Sid
 
     return (
         <div className="flex flex-col gap-6 w-full lg:w-64 shrink-0">
-            <div className="control-panel p-4 rounded-lg shadow-2xl">
+            <div className="control-panel p-4 shadow-2xl">
                 <div className="flex items-center justify-between mb-6">
                     <button
                         onClick={onBack}
-                        className="p-2 hover:bg-[var(--color-primary)] hover:text-[var(--bg-main)] rounded transition-colors text-[var(--text-secondary)]"
+                        className="p-2 hover:bg-[var(--color-primary)] hover:text-[var(--bg-main)] transition-colors text-[var(--text-secondary)]"
                         title="Back to Menu"
                     >
                         <ArrowLeft size={20} />
@@ -39,13 +39,13 @@ export const SidePanel = ({ validationResult, onValidate, onReset, onBack }: Sid
                 </div>
 
                 <div className="space-y-4 text-[10px] mb-8">
-                    <div className="flex justify-between p-2 bg-gray-900/60 shadow-inner text-(--text-primary) border-2 border-amber-900/30 rounded">
+                    <div className="flex justify-between p-2 bg-gray-900/60 shadow-inner text-(--text-primary) border-2 border-amber-900/30">
                         <span>STATUS</span>
                         <span className={getStatusColor()}>
                             {getStatusText()}
                         </span>
                     </div>
-                    <div className="p-3 bg-gray-900/60 shadow-inner text-(--text-primary) text-center leading-4 border-2 border-amber-900/20 rounded">
+                    <div className="p-3 bg-gray-900/60 shadow-inner text-(--text-primary) text-center leading-4 border-2 border-amber-900/20">
                         {validationResult === 'incomplete'
                             ? "Board is correct, but cells are missing."
                             : "Complete the grid."}
@@ -56,7 +56,7 @@ export const SidePanel = ({ validationResult, onValidate, onReset, onBack }: Sid
                     {/* Validation Button - Teal */}
                     <button
                         onClick={onValidate}
-                        className="btn-teal relative w-full h-12 flex items-center justify-center gap-2 text-xs tracking-wider rounded transition-all"
+                        className="btn-teal relative w-full h-12 flex items-center justify-center gap-2 text-xs tracking-wider transition-all"
                     >
                         <ScanSearch size={18} />
                         <span>CHECK STATUS</span>
@@ -65,7 +65,7 @@ export const SidePanel = ({ validationResult, onValidate, onReset, onBack }: Sid
                     {/* Reset Button - Navy */}
                     <button
                         onClick={onReset}
-                        className="btn-navy w-full h-10 flex items-center justify-center gap-2 text-[10px] rounded transition-all"
+                        className="btn-navy w-full h-10 flex items-center justify-center gap-2 text-[10px] transition-all"
                     >
                         <RefreshCw size={14} /> RESET
                     </button>

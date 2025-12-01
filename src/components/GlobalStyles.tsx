@@ -26,19 +26,24 @@ export const GlobalStyles = () => {
     <style>{`
       ${themeVariables}
 
+      * {
+        border-radius: 0 !important;
+      }
+
       body {
         background: var(--bg-main);
         color: var(--text-main);
         font-family: var(--font-main);
-        transition: background 0.3s ease, color 0.3s ease;
+        transition: background 0s, color 0s;
+        image-rendering: pixelated;
       }
 
-      @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&family=Inter:wght@400;700&family=Quicksand:wght@400;700&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
       
       /* Particle/Star field animation */
       @keyframes float {
         0%, 100% { transform: translateY(0px); opacity: 0.6; }
-        50% { transform: translateY(-20px); opacity: 1; }
+        50% { transform: translateY(-4px); opacity: 1; }
       }
       
       @keyframes twinkle {
@@ -48,32 +53,34 @@ export const GlobalStyles = () => {
       
       .particle {
         position: absolute;
-        width: 2px;
-        height: 2px;
+        width: 4px;
+        height: 4px;
         background: var(--text-secondary);
-        border-radius: 50%;
-        animation: twinkle 3s ease-in-out infinite;
+        box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+        animation: twinkle 1s steps(2) infinite;
       }
 
-      /* Atmospheric gradient background - optional based on theme */
+      /* Atmospheric gradient background */
       .gradient-bg {
         background: var(--bg-main);
+        background-image: 
+            linear-gradient(45deg, var(--color-primary) 25%, transparent 25%, transparent 75%, var(--color-primary) 75%, var(--color-primary)),
+            linear-gradient(45deg, var(--color-primary) 25%, transparent 25%, transparent 75%, var(--color-primary) 75%, var(--color-primary));
+        background-size: 4px 4px;
+        background-position: 0 0, 2px 2px;
+        opacity: 0.05;
       }
       
-      /* Warm texture overlay - mostly for retro themes */
       .texture-overlay {
-        /* background-image: url("..."); */
         opacity: 0.03;
         pointer-events: none;
       }
 
-      /* Vignette */
       .vignette {
         background: radial-gradient(circle at center, transparent 20%, rgba(0, 0, 0, 0.4) 100%);
         pointer-events: none;
       }
 
-      /* Warm ambient glow */
       .warm-glow {
         background: radial-gradient(
           circle 800px at var(--mouse-x, 50%) var(--mouse-y, 50%), 
@@ -84,62 +91,56 @@ export const GlobalStyles = () => {
         pointer-events: none;
       }
 
-      /* Retro pixel text */
       .text-retro-warm {
           color: var(--color-accent);
           text-shadow: 
               2px 2px 0px var(--color-secondary),
-              0 0 10px var(--color-accent);
+              4px 4px 0px rgba(0,0,0,0.5);
       }
 
-      /* Control panel styling */
       .control-panel {
           background: var(--bg-surface);
-          border: 3px solid var(--border-color);
+          border: 4px solid var(--border-color);
           box-shadow: 
-            0 8px 16px rgba(0, 0, 0, 0.4),
-            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            inset -4px -4px 0px rgba(0, 0, 0, 0.4),
+            inset 4px 4px 0px rgba(255, 255, 255, 0.1);
       }
       
-      /* Cell hole */
       .cell-hole {
         background: var(--bg-surface);
         box-shadow: 
-          inset 3px 3px 6px rgba(0, 0, 0, 0.6),
-          inset -1px -1px 3px rgba(255, 255, 255, 0.05);
+          inset 4px 4px 0px rgba(0, 0, 0, 0.6),
+          inset -4px -4px 0px rgba(255, 255, 255, 0.05);
         border: 2px solid var(--border-color);
       }
 
-      /* Physical tile base */
       .tile-physical {
         background: var(--bg-surface);
         color: var(--text-main);
         box-shadow: 
-          inset 1px 1px 0px rgba(255, 255, 255, 0.2),
-          inset -1px -1px 0px rgba(0, 0, 0, 0.3),
-          3px 3px 0px rgba(0, 0, 0, 0.3),
-          0 4px 8px rgba(0, 0, 0, 0.4);
-        transform: translateY(-2px);
-        transition: transform 0.1s, box-shadow 0.1s, background 0.3s, color 0.3s;
+          inset 2px 2px 0px rgba(255, 255, 255, 0.4),
+          inset -2px -2px 0px rgba(0, 0, 0, 0.4),
+          4px 4px 0px rgba(0, 0, 0, 0.5);
+        transform: translateY(-4px);
+        transition: none;
         border: 2px solid var(--border-color);
+        margin-bottom: 0px;
       }
 
       .tile-physical:active {
          transform: translateY(0px);
          box-shadow: 
-          inset 1px 1px 0px rgba(255, 255, 255, 0.1),
-          inset -1px -1px 0px rgba(0, 0, 0, 0.4),
-          1px 1px 0px rgba(0, 0, 0, 0.3);
+          inset 2px 2px 0px rgba(0, 0, 0, 0.4),
+          inset -2px -2px 0px rgba(255, 255, 255, 0.1);
+         margin-bottom: 0px;
+         margin-top: 0px;
       }
 
-      /* 3D Text Shadow for Numbers */
       .text-3d {
         text-shadow: 
-          1px 1px 0px rgba(0, 0, 0, 0.3),
-          2px 2px 0px rgba(0, 0, 0, 0.25);
+          2px 2px 0px rgba(0, 0, 0, 0.3);
       }
 
-      /* Number-specific tile colors - simplified for theming */
       .tile-num-1 { color: var(--color-primary); }
       .tile-num-2 { color: var(--color-secondary); }
       .tile-num-3 { color: var(--color-accent); }
@@ -150,120 +151,138 @@ export const GlobalStyles = () => {
       .tile-num-8 { color: var(--text-secondary); }
       .tile-num-9 { color: var(--color-primary); }
       
-      /* Empty cell */
       .tile-empty {
         background: var(--bg-surface);
         color: var(--text-main);
       }
       
-      /* Initial/locked tiles */
       .tile-initial {
         opacity: 0.9;
-        font-weight: bold;
         background: var(--bg-surface);
         filter: brightness(0.9);
+        box-shadow: 
+          inset 2px 2px 0px rgba(0,0,0,0.2),
+          inset -2px -2px 0px rgba(255,255,255,0.1);
       }
       
-      /* Error tile */
       .tile-error {
          background: var(--color-error) !important;
          color: var(--bg-main) !important;
          border-color: var(--color-error) !important;
-         animation: pulse-error 0.5s ease-in-out;
+         animation: pulse-error 0.5s steps(2);
       }
       
       @keyframes pulse-error {
-        0%, 100% { transform: scale(1) translateY(-2px); }
-        50% { transform: scale(1.05) translateY(-3px); }
+        0%, 100% { transform: translateY(-4px); }
+        50% { transform: translateY(-6px); }
       }
       
-      /* Button styling */
       .btn-warm {
           background: var(--color-primary);
           color: var(--bg-main);
-          border: 2px solid var(--border-color);
+          border: 4px solid var(--border-color);
           box-shadow: 
-              0 3px 0px var(--border-color),
-              0 4px 8px rgba(0, 0, 0, 0.3);
+              inset 4px 4px 0px rgba(255,255,255,0.4),
+              inset -4px -4px 0px rgba(0,0,0,0.4),
+              4px 4px 0px rgba(0,0,0,0.5);
+          transition: none;
       }
       
       .btn-warm:hover {
           filter: brightness(1.1);
-          transform: translateY(-1px);
+          transform: translateY(-2px);
           box-shadow: 
-              0 4px 0px var(--border-color),
-              0 6px 12px rgba(0, 0, 0, 0.4);
+              inset 4px 4px 0px rgba(255,255,255,0.4),
+              inset -4px -4px 0px rgba(0,0,0,0.4),
+              6px 6px 0px rgba(0,0,0,0.5);
       }
       
       .btn-warm:active {
           transform: translateY(2px);
           box-shadow: 
-              0 1px 0px var(--border-color),
-              0 2px 4px rgba(0, 0, 0, 0.3);
+              inset 4px 4px 0px rgba(0,0,0,0.4),
+              inset -4px -4px 0px rgba(255,255,255,0.4);
       }
       
       .btn-teal {
           background: var(--color-secondary);
           color: var(--bg-main);
-          border: 2px solid var(--border-color);
+          border: 4px solid var(--border-color);
           box-shadow: 
-              0 3px 0px var(--border-color),
-              0 4px 8px rgba(0, 0, 0, 0.3);
+              inset 4px 4px 0px rgba(255,255,255,0.4),
+              inset -4px -4px 0px rgba(0,0,0,0.4),
+              4px 4px 0px rgba(0,0,0,0.5);
+          transition: none;
       }
       
       .btn-teal:hover {
           filter: brightness(1.1);
-          transform: translateY(-1px);
+          transform: translateY(-2px);
           box-shadow: 
-              0 4px 0px var(--border-color),
-              0 6px 12px rgba(0, 0, 0, 0.4);
+              inset 4px 4px 0px rgba(255,255,255,0.4),
+              inset -4px -4px 0px rgba(0,0,0,0.4),
+              6px 6px 0px rgba(0,0,0,0.5);
       }
       
       .btn-teal:active {
           transform: translateY(2px);
           box-shadow: 
-              0 1px 0px var(--border-color),
-              0 2px 4px rgba(0, 0, 0, 0.3);
+              inset 4px 4px 0px rgba(0,0,0,0.4),
+              inset -4px -4px 0px rgba(255,255,255,0.4);
       }
       
       .btn-navy {
           background: var(--bg-surface);
           color: var(--text-main);
-          border: 2px solid var(--border-color);
+          border: 4px solid var(--border-color);
           box-shadow: 
-              0 3px 0px var(--border-color),
-              0 4px 8px rgba(0, 0, 0, 0.3);
+              inset 4px 4px 0px rgba(255,255,255,0.1),
+              inset -4px -4px 0px rgba(0,0,0,0.4),
+              4px 4px 0px rgba(0,0,0,0.5);
+          transition: none;
       }
       
       .btn-navy:hover {
           filter: brightness(1.1);
+          transform: translateY(-2px);
       }
 
-      /* Number pad buttons */
       .numpad-button {
-          transition: all 0.15s ease;
+          transition: none;
           font-weight: bold;
           background: var(--bg-surface);
           color: var(--text-main);
-          border: 1px solid var(--border-color);
+          border: 2px solid var(--border-color);
+          box-shadow: 
+              inset 2px 2px 0px rgba(255,255,255,0.2),
+              inset -2px -2px 0px rgba(0,0,0,0.4),
+              2px 2px 0px rgba(0,0,0,0.5);
       }
       
       .numpad-button:hover {
         background: var(--color-primary);
         color: var(--bg-main);
+        transform: translateY(-2px);
+        box-shadow: 
+            inset 2px 2px 0px rgba(255,255,255,0.2),
+            inset -2px -2px 0px rgba(0,0,0,0.4),
+            4px 4px 0px rgba(0,0,0,0.5);
+      }
+      
+      .numpad-button:active {
+        transform: translateY(2px);
+        box-shadow: inset 2px 2px 0px rgba(0,0,0,0.4);
       }
 
-      /* Pop-in animation */
       @keyframes popIn {
         0% { transform: scale(0.5) translateY(10px); opacity: 0; }
         60% { transform: scale(1.08) translateY(-3px); }
         100% { transform: scale(1) translateY(-2px); }
       }
       .animate-pop {
-        animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        animation: popIn 0.3s steps(4) forwards;
       }
       
-      /* Destruction animation */
       @keyframes destroy {
         0% { 
           transform: scale(1) translateY(-2px); 
@@ -286,26 +305,23 @@ export const GlobalStyles = () => {
         }
       }
       .animate-destroy {
-        animation: destroy 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        animation: destroy 0.35s steps(5) forwards;
       }
       
-      /* Shake animation */
       @keyframes shake {
         0%, 100% { transform: translateX(0); }
         25% { transform: translateX(-8px); }
         75% { transform: translateX(8px); }
       }
       .animate-shake {
-        animation: shake 0.4s ease-in-out;
+        animation: shake 0.4s steps(4);
       }
       
-      /* Selection highlight */
       .cell-selected {
         box-shadow: 
-          0 0 0 3px var(--color-accent),
-          inset 0 0 20px var(--color-accent);
+          0 0 0 4px var(--color-accent),
+          inset 0 0 0 2px var(--bg-main);
       }
     `}</style>
   );
 };
-

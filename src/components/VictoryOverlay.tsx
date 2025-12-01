@@ -29,7 +29,7 @@ export const VictoryOverlay = ({ show, onPlayAgain }: VictoryOverlayProps) => {
                 </h1>
                 <button
                     onClick={onPlayAgain}
-                    className="px-8 py-4 bg-gradient-to-br from-teal-500 to-teal-700 hover:from-teal-400 hover:to-teal-600 text-amber-50 text-xl font-bold rounded-lg transition-all border-3 border-teal-800"
+                    className="px-8 py-4 bg-linear-to-br from-teal-500 to-teal-700 hover:from-teal-400 hover:to-teal-600 text-amber-50 text-xl font-bold transition-all border-4 border-teal-800"
                     style={{
                         boxShadow: '0 4px 0px #0B5345, 0 6px 20px rgba(22, 160, 133, 0.6)',
                         textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
