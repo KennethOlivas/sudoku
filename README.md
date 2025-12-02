@@ -1,75 +1,102 @@
-# React + TypeScript + Vite
+# Sudoku
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, feature-rich Sudoku game built with React, TypeScript, and Vite. This project combines classic gameplay with a retro aesthetic and modern web technologies, offering multiple themes, difficulty levels, and a responsive design.
 
-Currently, two official plugins are available:
+## 🌟 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Multiple Themes**: Choose from 5 distinct visual styles:
+  - 🤖 **Cyberpunk**: Neon aesthetics and dark mode.
+  - 🏗️ **Brutalist**: Bold borders and high contrast.
+  - ⚪ **Minimal**: Clean and simple interface.
+  - 🍄 **Mario**: Retro gaming inspired style.
+  - 🪟 **Glass**: Modern frosted glass effect.
 
-## React Compiler
+- **Difficulty Levels**: Challenge yourself with 3 difficulty settings:
+  - 🟢 **Easy**: For beginners.
+  - 🟡 **Normal**: For casual players.
+  - 🔴 **Expert**: For Sudoku masters.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- **Game Mechanics**:
+  - ⌨️ **Keyboard Controls**: Full keyboard support for navigation and number input.
+  - 🖱️ **Mouse Lighting**: Interactive lighting effects that follow your cursor.
+  - ✅ **Validation**: Check your solution at any time.
+  - 💾 **Auto-Save**: Your preferences and game state are automatically saved.
+  - 📱 **Responsive**: Optimized for both desktop and mobile devices.
 
-Note: This will impact Vite dev & build performances.
+- **Internationalization**:
+  - 🇺🇸 English
+  - 🇪🇸 Spanish
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Framework**: [React 19](https://react.dev/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **State Management**: [Zustand](https://github.com/pmndrs/zustand)
+- **Icons**: [Lucide React](https://lucide.dev/)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Prerequisites
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js (Latest LTS recommended)
+- pnpm (recommended) or npm/yarn
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/KennethOlivas/sudoku.git
+   cd sudoku
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   pnpm install
+   # or
+   npm install
+   ```
+
+3. Start the development server:
+
+   ```bash
+   pnpm dev
+   # or
+   npm run dev
+   ```
+
+4. Open your browser and navigate to `http://localhost:5173` (or the port shown in your terminal).
+
+## 📜 Scripts
+
+- `dev`: Starts the development server.
+- `build`: Compiles the project for production.
+- `preview`: Previews the production build locally.
+- `lint`: Runs ESLint to check for code quality issues.
+
+## 📂 Project Structure
+
+```
+src/
+├── assets/          # Static assets
+├── components/      # React components (Game, Board, UI elements)
+├── hooks/           # Custom React hooks (Game logic, Controls)
+├── i18n/            # Translation files
+├── store/           # Zustand store for global state
+├── styles/          # Theme definitions and global styles
+├── types/           # TypeScript type definitions
+├── utils/           # Helper functions
+├── App.tsx          # Main application component
+└── main.tsx         # Entry point
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🤝 Contributing
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
